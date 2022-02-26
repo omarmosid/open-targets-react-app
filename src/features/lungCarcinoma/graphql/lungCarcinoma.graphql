@@ -1,0 +1,18 @@
+query lungCarcinomaAssociatedTargets($efoId: String!, $page: Pagination) {
+  disease(efoId: $efoId) {
+    associatedTargets(page: $page) {
+      rows {
+        target {
+          id
+          approvedName
+          approvedSymbol
+        }
+        score
+        datatypeScores {
+          id
+          score
+        }
+      }
+    }
+  }
+}
