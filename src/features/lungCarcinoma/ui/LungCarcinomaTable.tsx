@@ -1,7 +1,10 @@
+import { CallMade } from "@mui/icons-material";
+import { Box, Link, Typography } from "@mui/material";
 import React, { useMemo } from "react";
 import { CellProps, Column } from "react-table";
 import { DataTable } from "src/components/Table/DataTable";
 import { useLungCarcinomaAssociatedTargetsQuery } from "src/utils/graphql/codegen";
+import { ChartTabs } from "./ChartTabs";
 import { ExpandButtons } from "./ExpandButtons";
 
 type LungCarcinomaTableProps = {};
@@ -16,8 +19,31 @@ const LungCarcinomaTable: React.FC<LungCarcinomaTableProps> = () => {
         Cell: ({ row }: any) => <ExpandButtons row={row} />,
       },
       {
-        accessor: "target.approvedSymbol",
+        accessor: "target",
         Header: "Approved Symbol",
+        Cell: ({ value }: any) => (
+          <Link
+            href={`https://platform.opentargets.org/target/${value.approvedName}`}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <Box
+              sx={{
+                display: "flex",
+              }}
+            >
+              <Typography fontSize="1em">{value.approvedSymbol}</Typography>
+              <span>
+                <CallMade
+                  fontSize="small"
+                  sx={{
+                    marginLeft: "4px",
+                  }}
+                />
+              </span>
+            </Box>
+          </Link>
+        ),
       },
       {
         accessor: "target.approvedName",
@@ -47,6 +73,7 @@ const LungCarcinomaTable: React.FC<LungCarcinomaTableProps> = () => {
       <DataTable
         columns={columns}
         data={data?.disease?.associatedTargets.rows}
+        isLoading={loading}
       />
     </>
   );
