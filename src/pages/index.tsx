@@ -2,8 +2,8 @@ import { Typography } from "@mui/material";
 import type { NextPage } from "next";
 import Head from "next/head";
 import Image from "next/image";
+import Link from "next/link";
 import { LungCarcinomaTable } from "src/features/lungCarcinoma/ui/LungCarcinomaTable";
-import styles from "../styles/Home.module.css";
 
 const Home: NextPage = () => {
   return (
@@ -17,6 +17,8 @@ const Home: NextPage = () => {
       <Typography variant="h2" fontSize="3em" fontWeight="bold">
         Data Table
       </Typography>
+
+      <Link href="/test">Test</Link>
 
       <LungCarcinomaTable />
     </div>
