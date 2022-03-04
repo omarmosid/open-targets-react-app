@@ -4,6 +4,6 @@ export const removeUnderscore = (str: string) => {
   return str.replace("_", " ");
 };
 
-export const formatTick = (str: string) => {
+export const formatText = (str: string) => {
   return capitalize(removeUnderscore(str));
 };

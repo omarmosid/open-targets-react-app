@@ -4,7 +4,7 @@ import Head from "next/head";
 import Image from "next/image";
 import Link from "next/link";
 import { Layout } from "src/components/Layout/Layout";
-import { LungCarcinomaTable } from "src/features/lungCarcinoma/ui/LungCarcinomaTable";
+import { LungCarcinomaTable } from "src/features/diseaseTable/ui/LungCarcinomaTable";
 
 const Home: NextPage = () => {
   return (

@@ -8,7 +8,7 @@ import {
   Radar,
   RadarChart,
 } from "recharts";
-import { formatTick } from "../helpers/tickFormatter";
+import { formatText } from "../helpers/formatter";
 
 type DataRadialChartProps = {
   title: string;
@@ -25,7 +25,7 @@ const DataRadialChart: React.FC<DataRadialChartProps> = ({ data, title }) => {
         <PolarGrid />
         <PolarAngleAxis
           dataKey="id"
-          tickFormatter={(value) => formatTick(value)}
+          tickFormatter={(value) => formatText(value)}
         />
         <PolarRadiusAxis angle={30} domain={[0, 1]} />
         <Radar

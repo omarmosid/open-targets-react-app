@@ -9,7 +9,7 @@ import {
   XAxis,
   YAxis,
 } from "recharts";
-import { formatTick } from "../helpers/tickFormatter";
+import { formatText } from "../helpers/formatter";
 
 type DataBarChartProps = {
   data: any;
@@ -25,9 +25,9 @@ const DataBarChart: React.FC<DataBarChartProps> = ({ data, title }) => {
 
       <BarChart width={880} height={400} data={data}>
         <CartesianGrid strokeDasharray="3 3" />
-        <XAxis dataKey="id" tickFormatter={(value) => formatTick(value)} />
+        <XAxis dataKey="id" tickFormatter={(value) => formatText(value)} />
         <YAxis />
-        <Tooltip labelFormatter={(label) => formatTick(label)} />
+        <Tooltip labelFormatter={(label) => formatText(label)} />
         <Legend />
         <Bar dataKey="score" fill="#82ca9d" />
       </BarChart>

@@ -12,18 +12,20 @@ import {
   Skeleton,
 } from "@mui/material";
 import { useExpanded, useTable } from "react-table";
-import { ChartTabs } from "src/features/lungCarcinoma/ui/ChartTabs";
+import { ChartTabs } from "src/features/diseaseTable/ui/ChartTabs";
 
 type DataTableProps<T = any> = {
   data?: Array<T>;
   columns: Array<any>;
   isLoading?: boolean;
+  error?: any;
 };
 
 const DataTable: React.FC<DataTableProps> = ({
   data = [],
   columns: passedColumns,
   isLoading,
+  error
 }) => {
   const {
     getTableProps,

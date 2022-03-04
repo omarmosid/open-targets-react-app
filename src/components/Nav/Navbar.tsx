@@ -30,8 +30,26 @@ const Navbar: React.FC<NavbarProps> = ({ pageTitle = "" }) => {
                 gap: "2em",
               }}
             >
-              <NextLink href="/">Home</NextLink>
-              <NextLink href="/about">About Me</NextLink>
+              <NextLink href="/" passHref>
+                <Typography
+                  sx={{
+                    color: "#fff",
+                    cursor: "pointer",
+                  }}
+                >
+                  Home
+                </Typography>
+              </NextLink>
+              <NextLink href="/about" passHref>
+                <Typography
+                  sx={{
+                    color: "#fff",
+                    cursor: "pointer",
+                  }}
+                >
+                  About Me
+                </Typography>
+              </NextLink>
             </Box>
           </Toolbar>
         </AppBar>

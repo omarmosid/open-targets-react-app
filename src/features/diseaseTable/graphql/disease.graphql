@@ -1,5 +1,8 @@
-query lungCarcinomaAssociatedTargets($efoId: String!, $page: Pagination) {
+query disease($efoId: String!, $page: Pagination) {
   disease(efoId: $efoId) {
+    id
+    name
+    description
     associatedTargets(page: $page) {
       rows {
         target {

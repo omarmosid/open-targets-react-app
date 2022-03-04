@@ -1,10 +1,8 @@
 import { CallMade } from "@mui/icons-material";
-import { Box, Link, Typography } from "@mui/material";
+import { Box, Divider, Link, Typography } from "@mui/material";
 import React, { useMemo } from "react";
-import { CellProps, Column } from "react-table";
 import { DataTable } from "src/components/Table/DataTable";
-import { useLungCarcinomaAssociatedTargetsQuery } from "src/utils/graphql/codegen";
-import { ChartTabs } from "./ChartTabs";
+import { useDiseaseQuery } from "src/utils/graphql/codegen";
 import { ExpandButtons } from "./ExpandButtons";
 
 type LungCarcinomaTableProps = {};
@@ -57,7 +55,7 @@ const LungCarcinomaTable: React.FC<LungCarcinomaTableProps> = () => {
     []
   );
 
-  const { data, loading, error } = useLungCarcinomaAssociatedTargetsQuery({
+  const { data, loading, error } = useDiseaseQuery({
     variables: {
       efoId: "EFO_0001071",
       page: {
@@ -70,10 +68,22 @@ const LungCarcinomaTable: React.FC<LungCarcinomaTableProps> = () => {
 
   return (
     <>
+      <Typography variant="h2">{data?.disease?.name}</Typography>
+      <Typography variant="body1">{data?.disease?.description}</Typography>
+      <Divider sx={{
+        marginTop: "1em",
+        marginBottom: "4em"
+      }} />
+      <Typography variant="h4" sx={{
+        marginBottom: "1em",
+        fontSize: "1.4em",
+        fontWeight: "bold"
+      }}>Associated Targets Table</Typography>
       <DataTable
         columns={columns}
         data={data?.disease?.associatedTargets.rows}
         isLoading={loading}
+        error={error}
       />
     </>
   );

@@ -1125,18 +1125,21 @@ export type Variant = {
   name?: Maybe<Scalars['String']>;
 };
 
-export type LungCarcinomaAssociatedTargetsQueryVariables = Exact<{
+export type DiseaseQueryVariables = Exact<{
   efoId: Scalars['String'];
   page?: InputMaybe<Pagination>;
 }>;
 
 
-export type LungCarcinomaAssociatedTargetsQuery = { __typename?: 'Query', disease?: { __typename?: 'Disease', associatedTargets: { __typename?: 'AssociatedTargets', rows: Array<{ __typename?: 'AssociatedTarget', score: number, target: { __typename?: 'Target', id: string, approvedName: string, approvedSymbol: string }, datatypeScores: Array<{ __typename?: 'ScoredComponent', id: string, score: number }> }> } } | null };
+export type DiseaseQuery = { __typename?: 'Query', disease?: { __typename?: 'Disease', id: string, name: string, description?: string | null, associatedTargets: { __typename?: 'AssociatedTargets', rows: Array<{ __typename?: 'AssociatedTarget', score: number, target: { __typename?: 'Target', id: string, approvedName: string, approvedSymbol: string }, datatypeScores: Array<{ __typename?: 'ScoredComponent', id: string, score: number }> }> } } | null };
 
 
-export const LungCarcinomaAssociatedTargetsDocument = gql`
-    query lungCarcinomaAssociatedTargets($efoId: String!, $page: Pagination) {
+export const DiseaseDocument = gql`
+    query disease($efoId: String!, $page: Pagination) {
   disease(efoId: $efoId) {
+    id
+    name
+    description
     associatedTargets(page: $page) {
       rows {
         target {
@@ -1156,30 +1159,30 @@ export const LungCarcinomaAssociatedTargetsDocument = gql`
     `;
 
 /**
- * __useLungCarcinomaAssociatedTargetsQuery__
+ * __useDiseaseQuery__
  *
- * To run a query within a React component, call `useLungCarcinomaAssociatedTargetsQuery` and pass it any options that fit your needs.
- * When your component renders, `useLungCarcinomaAssociatedTargetsQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * To run a query within a React component, call `useDiseaseQuery` and pass it any options that fit your needs.
+ * When your component renders, `useDiseaseQuery` returns an object from Apollo Client that contains loading, error, and data properties
  * you can use to render your UI.
  *
  * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
  *
  * @example
- * const { data, loading, error } = useLungCarcinomaAssociatedTargetsQuery({
+ * const { data, loading, error } = useDiseaseQuery({
  *   variables: {
  *      efoId: // value for 'efoId'
  *      page: // value for 'page'
  *   },
  * });
  */
-export function useLungCarcinomaAssociatedTargetsQuery(baseOptions: Apollo.QueryHookOptions<LungCarcinomaAssociatedTargetsQuery, LungCarcinomaAssociatedTargetsQueryVariables>) {
+export function useDiseaseQuery(baseOptions: Apollo.QueryHookOptions<DiseaseQuery, DiseaseQueryVariables>) {
         const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useQuery<LungCarcinomaAssociatedTargetsQuery, LungCarcinomaAssociatedTargetsQueryVariables>(LungCarcinomaAssociatedTargetsDocument, options);
+        return Apollo.useQuery<DiseaseQuery, DiseaseQueryVariables>(DiseaseDocument, options);
       }
-export function useLungCarcinomaAssociatedTargetsLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<LungCarcinomaAssociatedTargetsQuery, LungCarcinomaAssociatedTargetsQueryVariables>) {
+export function useDiseaseLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<DiseaseQuery, DiseaseQueryVariables>) {
           const options = {...defaultOptions, ...baseOptions}
-          return Apollo.useLazyQuery<LungCarcinomaAssociatedTargetsQuery, LungCarcinomaAssociatedTargetsQueryVariables>(LungCarcinomaAssociatedTargetsDocument, options);
+          return Apollo.useLazyQuery<DiseaseQuery, DiseaseQueryVariables>(DiseaseDocument, options);
         }
-export type LungCarcinomaAssociatedTargetsQueryHookResult = ReturnType<typeof useLungCarcinomaAssociatedTargetsQuery>;
-export type LungCarcinomaAssociatedTargetsLazyQueryHookResult = ReturnType<typeof useLungCarcinomaAssociatedTargetsLazyQuery>;
-export type LungCarcinomaAssociatedTargetsQueryResult = Apollo.QueryResult<LungCarcinomaAssociatedTargetsQuery, LungCarcinomaAssociatedTargetsQueryVariables>;
+export type DiseaseQueryHookResult = ReturnType<typeof useDiseaseQuery>;
+export type DiseaseLazyQueryHookResult = ReturnType<typeof useDiseaseLazyQuery>;
+export type DiseaseQueryResult = Apollo.QueryResult<DiseaseQuery, DiseaseQueryVariables>;
